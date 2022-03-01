@@ -852,7 +852,16 @@
         }
 
         function nyIndtast() {
-            document.getElementById("navn").value
+            document.getElementById("navn").value = "";
+            document.getElementById("hoejde").value = "";
+            document.getElementById("vaegt").value = "";
+            document.getElementById("koen1").checked = true;
+            document.getElementById("restrik1").checked = false;
+            document.getElementById("date").value = "";
+            document.getElementById("ingen").checked = true;
+            document.getElementById("peptamen").checked = true;
+
+            this.retIndtast();
         }
 
     </script>
