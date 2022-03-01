@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta charset="utf-16">
+    <title>Ernæringsberegner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+
+<body style="font-family: 'Nunito', sans-serif;" class="bg-light">
+    <div class="jumbotron-fluid jumbotron border-bottom py-3 mb-0 bg-info text-white" style="background-image: url('BannerGrafik.png');background-repeat:no-repeat;background-position:center">
+        <div class="container">
+        <a href="index.php" class="text-info" alt="Ny beregning" style="text-decoration:none">
+        <h3 class="text-white">ERNÆRINGSBEREGNER</h3>
+        <h5 class="text-white">Intensiv, Vejle</h5>
+        </a>
+    </div>
+    </div>
+    
+
+
+    <div id="indtastning" style="visibility:visible">
+    <div class="container-fluid py-5 bg-white border-bottom">
+        <div class="container">
+    
+        <form name="patientdata" action="">
+        <div class="row">
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label for="navn">Navn</label>
+                <input type="text" class="form-control" id="navn" name="navn" placeholder="Patientens navn" required>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label for="hoejde">Højde</label>
+                <input type="number" class="form-control" id="hoejde" name="hoejde" placeholder="Højde i cm" required>
+            </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label for="vaegt">Vægt (ABW)</label>
+                <input type="number" step=".1" class="form-control" id="vaegt" name="vaegt" placeholder="Vægt i kg" required>
+            </div>
+            </div>
+        </div>
+
+        <div class="row border-bottom">
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="date">Indlæggelsesdato</label>
+                <input class="form-control" id="date" name="date" placeholder="dd-mm-åååå" type="text">
+            </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="form-group">
+                <label class="control-label" for="dateberegn">Beregningsdato</label>
+                <input class="form-control" id="dateberegn" name="dateberegn" readonly type="text" />
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="row p-3 border-bottom">
+            <div class="col-sm-4">
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="koen" id="koen1" value="Kvinde" checked>
+                <label class="form-check-label" for="koen1">
+                Kvinde
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="koen" id="koen2" value="Mand">
+                <label class="form-check-label" for="koen2">
+                Mand
+                </label>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="row p-3 border-bottom">
+            <div class="col-sm-12">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="dialyse" value="Dialyse">
+                <label class="form-check-label" for="dialyse">
+                Dialyse
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="nyreinsuf" value="Nyreinsufficient">
+                <label class="form-check-label" for="nyreinsuf">
+                Nyreinsufficient
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="leverinsuf" value="Leverinsufficient">
+                <label class="form-check-label" for="leverinsuf">
+                Leverinsufficient
+                </label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="type" id="ingen" value="Ingen" checked>
+                <label class="form-check-label" for="ingen">
+                Ingen
+                </label>
+            </div>
+
+            </div>
+        </div>
+
+        <div class="row p-3 border-bottom">
+            <div class="col-sm-12">
+                <div class="form-group form-check mb-0">
+                    <input type="checkbox" class="form-check-input" id="restrik1" name="restrik1">
+                    <label class="form-check-label" for="restrik1">Vækstrestriktion</label>
+                </div>
+            </div>
+        </div>
+        <div class="row p-3 mb-3 border-bottom">
+            <div class="col-sm-12">
+                Ernærings-præparat
+
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="peptamen" value="Peptamen" checked>
+                <label class="form-check-label" for="peptamen">
+                Peptamen AF
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonplus" value="NutrisonProteinPlus">
+                <label class="form-check-label" for="nutrisonplus">
+                    Nutrison Protein Plus
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonlow" value="NutrisonLowSodium">
+                <label class="form-check-label" for="nutrisonlow">
+                    Nutrison Low Sodium
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonconcentrated" value="NutrisonConcentrated">
+                <label class="form-check-label" for="nutrisonconcentrated">
+                    Nutrison Concentrated
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="smofnitro" value="SMOFKabivenExtraNitrogen">
+                <label class="form-check-label" for="">
+                    SMOF Kabiven Extra Nitrogen
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="vaeske" id="smofperifer" value="SMOF Kabiven Perifer">
+                <label class="form-check-label" for="smofperifer">
+                    SMOF Kabiven Perifer
+                </label>
+            </div>
+
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-info" onclick="beregn()">Beregn</button>
+        </form>
+    </div>
+    </div>
+
+    </div>
+
+    <div id="resultatBMIOver16" style="display:none">
+
+        <div class="container-fluid border-bottom bg-white">
+            <div class="container p-3">
+                <div class="row p-3">
+                    <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                        <h4>TIDLIG FASE</h4>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                            Ernærings-behov
+                            </div>
+                            <div class="col-sm-8 pb-3">
+                            Protein: <?= round($beregner->sf_protein * .7, 0) ?> gram<br>
+                            Energi: <?= round($beregner->sf_energibehov_min * .7, 0) ?> - <?= round($beregner->sf_energibehov_max * .7, 0) ?> kJ
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                            Peptamen AF
+                            </div>
+                            <div class="col-sm-8">
+                            <?=round($beregner->peptamen * .7, 0)?> ml dækker proteinbehovet<br>
+                            Det svarer til <?= round($beregner->peptamen_kj * .7, 0) ?> kJ energi<br>
+                            <?= ($beregner->peptamen_kj * .7 > $beregner->sf_energibehov_max * .7 ||
+                                $beregner->peptamen_kj * .7 < $beregner->sf_energibehov_min * .7  ? '<span class="small" style="color:#a200ff;font-weight:bold">Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!</span>' : '') ?>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                        <h4>STABIL FASE</h4>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                            Ernærings-behov
+                            </div>
+                            <div class="col-sm-8 pb-3">
+                            Protein: <?= $beregner->sf_protein ?> gram<br>
+                            Energi: <?= round($beregner->sf_energibehov_min,0) ?>-<?= round($beregner->sf_energibehov_max,0) ?> kJ
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                            Peptamen AF
+                            </div>
+                            <div class="col-sm-8">
+                            <?=$beregner->peptamen?> ml dækker proteinbehovet<br>
+                            Det svarer til <?= $beregner->peptamen_kj ?> kJ energi<br>
+                            <?= ($beregner->peptamen_kj > $beregner->sf_energibehov_max ||
+                                $beregner->peptamen_kj < $beregner->sf_energibehov_min  ? '<span class="small" style="color:#a200ff;font-weight:bold">Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!</span>' : '') ?>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+    </div>
+
+<div id="resultatBMIUnder17"  style="display:none">
+
+    <div class="container-fluid border-bottom bg-white">
+        <div class="container p-3">
+        <div class="row py-3">
+            <div class="col-sm-6 font-weight-bold text-right">
+            Dag 1
+            </div>
+            <div class="col-sm-6">
+            Dagligt behov: <?= $beregner->dag1_energibehov ?> kJ energi<br>
+            Peptamen AF: <?= $beregner->dag1_peptamen ?> ml (<?= $beregner->dag1_peptamen_protein ?> gram protein)
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-sm-6 font-weight-bold text-right">
+            Dag 3
+            </div>
+            <div class="col-sm-6">
+            Dagligt behov: <?= $beregner->dag3_energibehov ?> kJ energi<br>
+            Peptamen AF: <?= $beregner->dag3_peptamen ?> ml (<?= $beregner->dag3_peptamen_protein ?> gram protein)
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-sm-6 font-weight-bold text-right">
+            Dag 5
+            </div>
+            <div class="col-sm-6">
+            Dagligt behov: <?= $beregner->dag5_energibehov ?> kJ energi<br>
+            Peptamen AF: <?= $beregner->dag5_peptamen ?> ml (<?= $beregner->dag5_peptamen_protein ?> gram protein)
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-sm-6 font-weight-bold text-right">
+            Dag 7
+            </div>
+            <div class="col-sm-6">
+            Dagligt behov: <?= $beregner->dag7_energibehov ?> kJ energi<br>
+            Peptamen AF: <?= $beregner->dag7_peptamen ?> ml (<?= $beregner->dag7_peptamen_protein ?> gram protein)
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+    <script>
+
+    const d = new Date();
+    year = d.getFullYear();
+    month = "0" + (d.getMonth()+1);
+    day = "0" + (d.getDate());
+    month = (month).substring(month.length-2,month.length);
+    day = (day).substring(day.length-2,day.length);
+
+    document.getElementById("dateberegn").value = year + "-" + month + "-" + day;
+
+    function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("link");
+        var textArea = document.createElement("textarea");
+        textArea.value = copyText.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("Copy");
+        textArea.remove();
+        /* Alert the copied text */
+        document.getElementById("kopieret").innerHTML = "Kopieret!";
+    }
+    </script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            days: ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"],
+            dayShort: ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"],
+            dayMin: ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
+            months: ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"],
+            monthsShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+            today: "Idag",
+            clear: "Ryd",
+            format: 'dd-mm-yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            weekStart: 1
+        };
+        date_input.datepicker(options);
+        })
+
+    </script>
+    </body>
+    
+    </html>    
