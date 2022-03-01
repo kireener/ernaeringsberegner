@@ -1,340 +1,861 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+﻿<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
     <meta charset="utf-16">
     <title>Ernæringsberegner</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
 
 
 <body style="font-family: 'Nunito', sans-serif;" class="bg-light">
-    <div class="jumbotron-fluid jumbotron border-bottom py-3 mb-0 bg-info text-white" style="background-image: url('BannerGrafik.png');background-repeat:no-repeat;background-position:center">
-        <div class="container">
-        <a href="index.php" class="text-info" alt="Ny beregning" style="text-decoration:none">
-        <h3 class="text-white">ERNÆRINGSBEREGNER</h3>
-        <h5 class="text-white">Intensiv, Vejle</h5>
-        </a>
+    <div class="jumbotron-fluid jumbotron border-bottom py-3 mb-0 bg-info text-white"
+        style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOMAAAB1CAYAAAC8sVYSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ bWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6 eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1 MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJ RD0ieG1wLmlpZDo1QjM2NTE1RDM1OEUxMUUzQTJCOUVEM0E5NDQwRjcxQyIgeG1wTU06RG9jdW1l bnRJRD0ieG1wLmRpZDo1QjM2NTE1RTM1OEUxMUUzQTJCOUVEM0E5NDQwRjcxQyI+IDx4bXBNTTpE ZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjVCMzY1MTVCMzU4RTExRTNBMkI5 RUQzQTk0NDBGNzFDIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjVCMzY1MTVDMzU4RTExRTNB MkI5RUQzQTk0NDBGNzFDIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBt ZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+vmi1aAAAC09JREFUeNrsXWlTGzkQlQcDgRgwV7izubO1 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 ');background-repeat:no-repeat;background-position:center">
+        <div class="container p-3">
+            <a href="index.php" class="text-info" alt="Ny beregning" style="text-decoration:none">
+                <h3 class="text-white p-0 m-0">ERNÆRINGSBEREGNER</h3>
+            </a>
+        </div>
     </div>
-    </div>
-    
+
 
 
     <div id="indtastning" style="visibility:visible">
-    <div class="container-fluid py-5 bg-white border-bottom">
-        <div class="container">
-    
-        <form name="patientdata" action="">
-        <div class="row">
-            <div class="col-sm-4">
-            <div class="form-group">
-                <label for="navn">Navn</label>
-                <input type="text" class="form-control" id="navn" name="navn" placeholder="Patientens navn" required>
+        <div class="container-fluid py-5 bg-white border-bottom">
+            <div class="container">
+
+                <form name="patientdata" action="">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="navn">Navn</label>
+                                <input type="text" class="form-control" id="navn" name="navn"
+                                    placeholder="Patientens navn" required>
+                                <span id="navnerror" style="color:red;visibility:hidden;font-size:0.8rem">
+                                    Indtast venligst et navn
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="hoejde">Højde</label>
+                                <input type="number" class="form-control" id="hoejde" name="hoejde"
+                                    placeholder="Højde i cm" required>
+                                <span id="hoejdeerror" style="color:red;visibility:hidden;font-size:0.8rem">
+                                    Indtast en højde
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="vaegt">Vægt (ABW)</label>
+                                <input type="number" step=".1" class="form-control" id="vaegt" name="vaegt"
+                                    placeholder="Vægt i kg" required>
+                                <span id="vaegterror" style="color:red;visibility:hidden;font-size:0.8rem">
+                                    Indtast en vægt
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row border-bottom">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="date">Indlæggelsesdato</label>
+                                <input class="form-control" id="date" name="date" placeholder="dd-mm-åååå" type="text">
+                                <span id="dateerror" style="color:red;visibility:hidden;font-size:0.8rem">
+                                    Vælg en Indlæggelsesdato
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label" for="dateberegn">Beregningsdato</label>
+                                <input class="form-control" id="dateberegn" name="dateberegn" readonly type="text" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row p-3 border-bottom">
+                        <div class="col-sm-4">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="koen" id="koen1" value="Kvinde"
+                                    checked>
+                                <label class="form-check-label" for="koen1">
+                                    Kvinde
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="koen" id="koen2" value="Mand">
+                                <label class="form-check-label" for="koen2">
+                                    Mand
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row p-3 border-bottom">
+                        <div class="col-sm-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="dialyse" value="Dialyse">
+                                <label class="form-check-label" for="dialyse">
+                                    Dialyse
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="nyreinsuf"
+                                    value="Nyreinsufficient">
+                                <label class="form-check-label" for="nyreinsuf">
+                                    Nyreinsufficient
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="leverinsuf"
+                                    value="Leverinsufficient">
+                                <label class="form-check-label" for="leverinsuf">
+                                    Leverinsufficient
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="type" id="ingen" value="Ingen"
+                                    checked>
+                                <label class="form-check-label" for="ingen">
+                                    Ingen
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row p-3 border-bottom">
+                        <div class="col-sm-12">
+                            <div class="form-group form-check mb-0">
+                                <input type="checkbox" class="form-check-input" id="restrik1" name="restrik1">
+                                <label class="form-check-label" for="restrik1">Vækstrestriktion</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-3 mb-3 border-bottom">
+                        <div class="col-sm-12">
+                            Ernæringspræparat
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input" id="peptamen" value="1"
+                                    checked>
+                                <label class="form-check-label" for="peptamen">
+                                    Peptamen AF <small>(638 kJ energi og 9,4 gram protein pr. 100 ml)</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input" id="nutrisonplus"
+                                    value="2">
+                                <label class="form-check-label" for="nutrisonplus">
+                                    Nutrison Protein Plus <small>(630 kJ energi og 7,5 gram protein pr. 100 ml)</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input" id="nutrisonlow"
+                                    value="3">
+                                <label class="form-check-label" for="nutrisonlow">
+                                    Nutrison Low Sodium <small>(420 kJ energi og 4 gram protein pr. 100 ml)</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input"
+                                    id="nutrisonconcentrated" value="4">
+                                <label class="form-check-label" for="nutrisonconcentrated">
+                                    Nutrison Concentrated <small>(840 kJ energi og 7,5 gram protein pr. 100 ml)</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input" id="smofnitro"
+                                    value="5">
+                                <label class="form-check-label" for="">
+                                    SMOF Kabiven Extra Nitrogen <small>(370 kJ energi og 6,75 gram protein pr.
+                                        100 ml)</small>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="vaeske_input" id="smofperifer"
+                                    value="6">
+                                <label class="form-check-label" for="smofperifer">
+                                    SMOF Kabiven Perifer <small>(283 kJ energi og 3,15 gram protein pr. 100 ml)</small>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <button type="button" class="btn btn-info" onclick="beregn()">Beregn</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="patientinfo" style="display:none">
+        <div class="container-fluid">
+            <div class="container p-1">
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <i class="fa fa-print text-info" onclick="window.print()" style="cursor: pointer;"> Print</i>
+                        &nbsp;
+                        <i class="fa fa-edit text-info" onclick="retIndtast()" style="cursor: pointer;"> Ret
+                        </i> &nbsp;
+                        <i class="fa fa-plus text-info" onclick="nyIndtast()" style="cursor: pointer;"> Ny</i>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-            <div class="form-group">
-                <label for="hoejde">Højde</label>
-                <input type="number" class="form-control" id="hoejde" name="hoejde" placeholder="Højde i cm" required>
-            </div>
-            </div>
-            <div class="col-sm-4">
-            <div class="form-group">
-                <label for="vaegt">Vægt (ABW)</label>
-                <input type="number" step=".1" class="form-control" id="vaegt" name="vaegt" placeholder="Vægt i kg" required>
-            </div>
-            </div>
-        </div>
-
-        <div class="row border-bottom">
-            <div class="col-sm-4">
-            <div class="form-group">
-                <label class="control-label" for="date">Indlæggelsesdato</label>
-                <input class="form-control" id="date" name="date" placeholder="dd-mm-åååå" type="text">
-            </div>
-            </div>
-            <div class="col-sm-4">
-            <div class="form-group">
-                <label class="control-label" for="dateberegn">Beregningsdato</label>
-                <input class="form-control" id="dateberegn" name="dateberegn" readonly type="text" />
-            </div>
-            </div>
         </div>
 
 
-
-        <div class="row p-3 border-bottom">
-            <div class="col-sm-4">
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="koen" id="koen1" value="Kvinde" checked>
-                <label class="form-check-label" for="koen1">
-                Kvinde
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="koen" id="koen2" value="Mand">
-                <label class="form-check-label" for="koen2">
-                Mand
-                </label>
-            </div>
-            </div>
-        </div>
-
-
-        <div class="row p-3 border-bottom">
-            <div class="col-sm-12">
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="type" id="dialyse" value="Dialyse">
-                <label class="form-check-label" for="dialyse">
-                Dialyse
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="type" id="nyreinsuf" value="Nyreinsufficient">
-                <label class="form-check-label" for="nyreinsuf">
-                Nyreinsufficient
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="type" id="leverinsuf" value="Leverinsufficient">
-                <label class="form-check-label" for="leverinsuf">
-                Leverinsufficient
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="type" id="ingen" value="Ingen" checked>
-                <label class="form-check-label" for="ingen">
-                Ingen
-                </label>
-            </div>
-
-            </div>
-        </div>
-
-        <div class="row p-3 border-bottom">
-            <div class="col-sm-12">
-                <div class="form-group form-check mb-0">
-                    <input type="checkbox" class="form-check-input" id="restrik1" name="restrik1">
-                    <label class="form-check-label" for="restrik1">Vækstrestriktion</label>
+        <div class="container-fluid bg-white">
+            <div class="container pt-3">
+                <h3>
+                    <span id="vis_patientnavn"></span>
+                </h3>
+                <div class="row pt-3 pb-5">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4 text-right font-weight-bold">
+                                Indlæggelsesdato
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_indlaegdato"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 text-right font-weight-bold">
+                                Køn
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_koen"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                                Højde
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_hoejde"></span> cm
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 text-right font-weight-bold">
+                                Dialyse/insufficiens
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_type"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                                Vægt (ABW)
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_abw"></span> kg
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                                IBW
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_ibw"></span>
+                                <small>(Højde - <span id="visFraTraekAfhaengigtAfKoen"></span>
+                                    (<span id="vis_koen2"></span>))</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                                Ernæringsvægt
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_ernaeringsvaegt"></span> <small>(IBW + (1/3 x (ABW - IBW)))</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 font-weight-bold text-right">
+                                BMI
+                            </div>
+                            <div class="col-sm-8">
+                                <span id="vis_bmi"></span> <small>(ABW / Højde<sup>2</sup>)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border-top">
+                    <div class="col-sm-12 pt-5">
+                        <h3>Valgt præparat: <span id="vis_valgtpraeparat"></span></h3>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row p-3 mb-3 border-bottom">
-            <div class="col-sm-12">
-                Ernærings-præparat
-
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="peptamen" value="Peptamen" checked>
-                <label class="form-check-label" for="peptamen">
-                Peptamen AF
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonplus" value="NutrisonProteinPlus">
-                <label class="form-check-label" for="nutrisonplus">
-                    Nutrison Protein Plus
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonlow" value="NutrisonLowSodium">
-                <label class="form-check-label" for="nutrisonlow">
-                    Nutrison Low Sodium
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="nutrisonconcentrated" value="NutrisonConcentrated">
-                <label class="form-check-label" for="nutrisonconcentrated">
-                    Nutrison Concentrated
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="smofnitro" value="SMOFKabivenExtraNitrogen">
-                <label class="form-check-label" for="">
-                    SMOF Kabiven Extra Nitrogen
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="vaeske" id="smofperifer" value="SMOF Kabiven Perifer">
-                <label class="form-check-label" for="smofperifer">
-                    SMOF Kabiven Perifer
-                </label>
-            </div>
-
-            </div>
-        </div>
-
-
-        <button type="submit" class="btn btn-info" onclick="beregn()">Beregn</button>
-        </form>
-    </div>
-    </div>
-
     </div>
 
     <div id="resultatBMIOver16" style="display:none">
 
         <div class="container-fluid border-bottom bg-white">
-            <div class="container p-3">
+            <div class="container">
                 <div class="row p-3">
                     <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                        <h4>TIDLIG FASE</h4>
-                        <div class="row">
-                            <div class="col-sm-4 font-weight-bold text-right">
-                            Ernærings-behov
-                            </div>
-                            <div class="col-sm-8 pb-3">
-                            Protein: <?= round($beregner->sf_protein * .7, 0) ?> gram<br>
-                            Energi: <?= round($beregner->sf_energibehov_min * .7, 0) ?> - <?= round($beregner->sf_energibehov_max * .7, 0) ?> kJ
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>TIDLIG FASE</h4>
+                                <div class="row">
+                                    <div class="col-sm-4 font-weight-bold text-right">
+                                        Ernærings-behov
+                                    </div>
+                                    <div class="col-sm-8 pb-3">
+                                        Protein:
+                                        <span id="tidligfase_protein"></span> gram<br>
+                                        Energi:
+                                        <span id="tidligfase_energibehov_min"></span> -
+                                        <span id="tidligfase_energibehov_max"></span> kJ
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 font-weight-bold text-right">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span id="tidligfase_vaeske"></span> ml af valgt præparat dækker
+                                        proteinbehovet<br>
+                                        Det svarer til
+                                        <span id="tidligfase_vaeske_kj"></span> kJ energi<br>
+                                        <span id="tidligfaseOveskridVaerdiText" class="small"
+                                            style="color:#a200ff;font-weight:bold"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-4 font-weight-bold text-right">
-                            Peptamen AF
-                            </div>
-                            <div class="col-sm-8">
-                            <?=round($beregner->peptamen * .7, 0)?> ml dækker proteinbehovet<br>
-                            Det svarer til <?= round($beregner->peptamen_kj * .7, 0) ?> kJ energi<br>
-                            <?= ($beregner->peptamen_kj * .7 > $beregner->sf_energibehov_max * .7 ||
-                                $beregner->peptamen_kj * .7 < $beregner->sf_energibehov_min * .7  ? '<span class="small" style="color:#a200ff;font-weight:bold">Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!</span>' : '') ?>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
                     </div>
                     <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                        <h4>STABIL FASE</h4>
-                        <div class="row">
-                            <div class="col-sm-4 font-weight-bold text-right">
-                            Ernærings-behov
+                        <div class="card">
+                            <div class="card-body">
+                                <h4>STABIL FASE</h4>
+                                <div class="row">
+                                    <div class="col-sm-4 font-weight-bold text-right">
+                                        Ernærings-behov
+                                    </div>
+                                    <div class="col-sm-8 pb-3">
+                                        Protein:
+                                        <span id="stabilfase_protein"></span> gram<br>
+                                        Energi:
+                                        <span id="stabilfase_energibehov_min"></span> - <span
+                                            id="stabilfase_energibehov_max"></span> kJ
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 font-weight-bold text-right">
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <span id="stabilfase_vaeske"></span> ml af valgte præparat dækker
+                                        proteinbehovet<br>
+                                        Det svarer til
+                                        <span id="stabilfase_vaeske_kj"></span> kJ energi<br>
+                                        <span id="stabilfaseOveskridVaerdiText" class="small"
+                                            style="color:#a200ff;font-weight:bold"></span>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-8 pb-3">
-                            Protein: <?= $beregner->sf_protein ?> gram<br>
-                            Energi: <?= round($beregner->sf_energibehov_min,0) ?>-<?= round($beregner->sf_energibehov_max,0) ?> kJ
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4 font-weight-bold text-right">
-                            Peptamen AF
-                            </div>
-                            <div class="col-sm-8">
-                            <?=$beregner->peptamen?> ml dækker proteinbehovet<br>
-                            Det svarer til <?= $beregner->peptamen_kj ?> kJ energi<br>
-                            <?= ($beregner->peptamen_kj > $beregner->sf_energibehov_max ||
-                                $beregner->peptamen_kj < $beregner->sf_energibehov_min  ? '<span class="small" style="color:#a200ff;font-weight:bold">Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!</span>' : '') ?>
-                            </div>
-                        </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="resultatBMIUnder17" style="display:none">
+
+        <div class="container-fluid border-bottom bg-white">
+            <div class="container p-3">
+                <div class="row py-3">
+                    <div class="col-sm-6 font-weight-bold text-right">
+                        Dag 1
+                    </div>
+                    <div class="col-sm-6">
+                        Dagligt behov:
+                        <span id="vis_dag1_energibehov"></span> kJ energi<br>
+                        Mængde:
+                        <span id="vis_dag1_vaeske"></span> ml (<span id="vis_dag1_vaeske_protein"></span> gram protein)
                     </div>
                 </div>
+                <div class="row py-3">
+                    <div class="col-sm-6 font-weight-bold text-right">
+                        Dag 3
+                    </div>
+                    <div class="col-sm-6">
+                        Dagligt behov:
+                        <span id="vis_dag3_energibehov"></span> kJ energi<br>
+                        Mængde:
+                        <span id="vis_dag3_vaeske"></span> ml (<span id="vis_dag3_vaeske_protein"></span> gram protein)
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-sm-6 font-weight-bold text-right">
+                        Dag 5
+                    </div>
+                    <div class="col-sm-6">
+                        Dagligt behov:
+                        <span id="vis_dag5_energibehov"></span> kJ energi<br>
+                        Mængde:
+                        <span id="vis_dag5_vaeske"></span> ml (<span id="vis_dag5_vaeske_protein"></span> gram protein)
+                    </div>
+                </div>
+                <div class="row py-3">
+                    <div class="col-sm-6 font-weight-bold text-right">
+                        Dag 7
+                    </div>
+                    <div class="col-sm-6">
+                        Dagligt behov:
+                        <span id="vis_dag7_energibehov"></span> kJ energi<br>
+                        Mængde:
+                        <span id="vis_dag7_vaeske"></span> ml (<span id="vis_dag7_vaeske_protein"></span> gram protein)
+                    </div>
                 </div>
             </div>
+        </div>
+
+
     </div>
 
-<div id="resultatBMIUnder17"  style="display:none">
-
-    <div class="container-fluid border-bottom bg-white">
-        <div class="container p-3">
-        <div class="row py-3">
-            <div class="col-sm-6 font-weight-bold text-right">
-            Dag 1
+    <div id="vaeskebehov" style="display: none;">
+        <div class="container-fluid p-3 bg-white border-bottom">
+            <div class="container p-3">
+                <h4>Væskebehov</h4>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <span id="vis_vaeskebehov"></span>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-6">
-            Dagligt behov: <?= $beregner->dag1_energibehov ?> kJ energi<br>
-            Peptamen AF: <?= $beregner->dag1_peptamen ?> ml (<?= $beregner->dag1_peptamen_protein ?> gram protein)
-            </div>
-        </div>
-        <div class="row py-3">
-            <div class="col-sm-6 font-weight-bold text-right">
-            Dag 3
-            </div>
-            <div class="col-sm-6">
-            Dagligt behov: <?= $beregner->dag3_energibehov ?> kJ energi<br>
-            Peptamen AF: <?= $beregner->dag3_peptamen ?> ml (<?= $beregner->dag3_peptamen_protein ?> gram protein)
-            </div>
-        </div>
-        <div class="row py-3">
-            <div class="col-sm-6 font-weight-bold text-right">
-            Dag 5
-            </div>
-            <div class="col-sm-6">
-            Dagligt behov: <?= $beregner->dag5_energibehov ?> kJ energi<br>
-            Peptamen AF: <?= $beregner->dag5_peptamen ?> ml (<?= $beregner->dag5_peptamen_protein ?> gram protein)
-            </div>
-        </div>
-        <div class="row py-3">
-            <div class="col-sm-6 font-weight-bold text-right">
-            Dag 7
-            </div>
-            <div class="col-sm-6">
-            Dagligt behov: <?= $beregner->dag7_energibehov ?> kJ energi<br>
-            Peptamen AF: <?= $beregner->dag7_peptamen ?> ml (<?= $beregner->dag7_peptamen_protein ?> gram protein)
-            </div>
-        </div>
         </div>
     </div>
-    
-
-</div>
-
-
 
     <script>
 
-    const d = new Date();
-    year = d.getFullYear();
-    month = "0" + (d.getMonth()+1);
-    day = "0" + (d.getDate());
-    month = (month).substring(month.length-2,month.length);
-    day = (day).substring(day.length-2,day.length);
+        const d = new Date();
+        year = d.getFullYear();
+        month = "0" + (d.getMonth() + 1);
+        day = "0" + (d.getDate());
+        month = (month).substring(month.length - 2, month.length);
+        day = (day).substring(day.length - 2, day.length);
 
-    document.getElementById("dateberegn").value = year + "-" + month + "-" + day;
-
-    function myFunction() {
-        /* Get the text field */
-        var copyText = document.getElementById("link");
-        var textArea = document.createElement("textarea");
-        textArea.value = copyText.textContent;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("Copy");
-        textArea.remove();
-        /* Alert the copied text */
-        document.getElementById("kopieret").innerHTML = "Kopieret!";
-    }
+        document.getElementById("dateberegn").value = day + "-" + month + "-" + year;
     </script>
-    
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <script>
-        $(document).ready(function() {
-        var date_input = $('input[name="date"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        var options = {
-            days: ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"],
-            dayShort: ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"],
-            dayMin: ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
-            months: ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"],
-            monthsShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
-            today: "Idag",
-            clear: "Ryd",
-            format: 'dd-mm-yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-            weekStart: 1
-        };
-        date_input.datepicker(options);
+        $(document).ready(function () {
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            var options = {
+                days: ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"],
+                dayShort: ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"],
+                dayMin: ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
+                months: ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"],
+                monthsShort: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+                today: "Idag",
+                clear: "Ryd",
+                format: 'dd-mm-yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+                weekStart: 1
+            };
+            date_input.datepicker(options);
         })
 
+
+        const PEPTAMEN_VAESKE_NAVN = "Peptamen AF";
+        const PEPTAMEN_AF_ENERGI = 638;
+        const PEPTAMEN_AF_PROTEIN = 9.4;
+        const PEPTAMEN_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const NUTRISON_PROTEIN_VAESKE_NAVN = "Nutrison Protein Plus energy";
+        const NUTRISON_PROTEIN_PLUS_PROTEIN = 7.5;
+        const NUTRISON_PROTEIN_PLUS_KJ = 630;
+        const NUTRISON_PROTEIN_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const NUTRISON_LOW_SODIUM_VAESKE_NAVN = "Nutrison Low Sodium";
+        const NUTRISON_LOW_SODIUM_PROTEIN = 4;
+        const NUTRISON_LOW_SODIUM_KJ = 420;
+        const NUTRISON_LOW_SODIUM_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const NUTRISON_CONCENTRATED_VAESKE_NAVN = "Nutrison Concentrated";
+        const NUTRISON_CONCENTRATED_PROTEIN = 7.5;
+        const NUTRISON_CONCENTRATED_KJ = 840;
+        const NUTRISON_CONCENTRATED_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const SMOF_KAVIVEN_EXTRA_VAESKE_NAVN = "SMOF Kabiven Extra Nitrogen";
+        const SMOF_KABIVEN_EXTRA_NITRO_PROTEIN = 6.75;
+        const SMOF_KABIVEN_EXTRA_NITRO_KJ = 370;
+        const SMOF_KABIVEN_EXTRA_NITRO_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const SMOF_KABIVEN_PERIFER_VAESKE_NAVN = "SMOF Kabiven Perifer";
+        const SMOF_KABIVEN_PERIFER_PROTEIN = 3.15;
+        const SMOF_KABIVEN_PERIFER_KJ = 283;
+        const SMOF_KABIVEN_PERIFER_TEXT = "Ernæringsforslaget er hypokalorisk. Ved behov kan suppleres med glucose!";
+
+        const UNDER_BMI_17_DAG1 = 42;
+        const UNDER_BMI_17_DAG3 = 56;
+        const UNDER_BMI_17_DAG5 = 70;
+        const UNDER_BMI_17_DAG7 = 84;
+
+        class Beregner {
+            navn;
+            bmi;
+            hoejde;
+            koen;
+            dialyseinsufficient;
+            vaesketrestriktion;
+            dagligtvaeskebehov;
+            ibw;
+            abw;
+            ernaeringsvaegt;
+            beregndato;
+            indlaegdato;
+            stabilfasestartdato;
+            valgtvaeske;
+            valgtvaeskenavn;
+            overskridtekst;
+
+            maengde_protein;
+            maengde_kj;
+
+            stabilfase_energibehov_min;
+            stabilfase_energibehov_max;
+            stabilfase_protein;
+
+            vaeske;
+            vaeske_kj;
+
+            dag1_energibehov;
+            dag3_energibehov;
+            dag5_energibehov;
+            dag7_energibehov;
+
+            dag1_vaeske;
+            dag3_vaeske;
+            dag5_vaeske;
+            dag7_vaeske;
+
+            dag1_vaeske_protein;
+            dag3_vaeske_protein;
+            dag5_vaeske_protein;
+            dag7_vaeske_protein;
+
+            construct() {
+            }
+
+            beregnErnaering() {
+
+                // Tjek for hvilken væske der er valgt og sæt mængde prot og kj
+                if (this.valgtvaeske == 1) {
+                    this.maengde_protein = PEPTAMEN_AF_PROTEIN;
+                    this.maengde_kj = PEPTAMEN_AF_ENERGI;
+                    this.valgtvaeskenavn = "Peptamen AF";
+                    this.overskridtekst = PEPTAMEN_TEXT;
+
+                }
+                else if (this.valgtvaeske == 2) {
+                    this.maengde_protein = NUTRISON_PROTEIN_PLUS_PROTEIN;
+                    this.maengde_kj = NUTRISON_PROTEIN_PLUS_KJ;
+                    this.valgtvaeskenavn = "Nutrison Protein Plus";
+                    this.overskridtekst = NUTRISON_PROTEIN_TEXT;
+                }
+                else if (this.valgtvaeske == 3) {
+                    this.maengde_protein = NUTRISON_LOW_SODIUM_PROTEIN;
+                    this.maengde_kj = NUTRISON_LOW_SODIUM_KJ;
+                    this.valgtvaeskenavn = "Nutrison Low Sodium";
+                    this.overskridtekst = NUTRISON_LOW_SODIUM_TEXT;
+                }
+                else if (this.valgtvaeske == 4) {
+                    this.maengde_protein = NUTRISON_CONCENTRATED_PROTEIN;
+                    this.maengde_kj = NUTRISON_CONCENTRATED_KJ;
+                    this.valgtvaeskenavn = "Nutrison Concentrated";
+                    this.overskridtekst = NUTRISON_CONCENTRATED_TEXT;
+                }
+                else if (this.valgtvaeske == 5) {
+                    this.maengde_protein = SMOF_KABIVEN_EXTRA_NITRO_PROTEIN;
+                    this.maengde_kj = SMOF_KABIVEN_EXTRA_NITRO_KJ;
+                    this.valgtvaeskenavn = "SMOF Kabiven Extra Nitrogen";
+                    this.overskridtekst = SMOF_KABIVEN_EXTRA_NITRO_TEXT;
+                }
+                else if (this.valgtvaeske == 6) {
+                    this.maengde_protein = SMOF_KABIVEN_PERIFER_PROTEIN;
+                    this.maengde_kj = SMOF_KABIVEN_PERIFER_KJ;
+                    this.valgtvaeskenavn = "SMOF Kabiven Perifer";
+                    this.overskridtekst = SMOF_KABIVEN_PERIFER_TEXT;
+                }
+                this.bmi = Math.round(this.abw / (Math.pow(this.hoejde / 100, 2)));
+
+                if ("Kvinde".localeCompare(this.koen) == 0) {
+                    this.ibw = this.hoejde - 105;
+                } else {
+                    this.ibw = this.hoejde - 100;
+                }
+
+                this.ernaeringsvaegt = Math.round(this.ibw + ((this.abw - this.ibw) / 3));
+
+                if (this.bmi > 25) {
+                    this.saetVaerdierForBMIOver25();
+                } else if (this.bmi > 16) {
+                    this.saetVaerdierForBMIOver16();
+                } else {
+                    this.saetVaerdierForBMIUnder17();
+                }
+            }
+
+            beregnVaeske() {
+                if (!this.vaesketrestriktion) {
+                    this.dagligtvaeskebehov = Math.round(30 * this.abw);
+                }
+            }
+
+            saetVaerdierForBMIOver25() {
+                this.beregnSamlet(this.ernaeringsvaegt);
+            }
+
+            saetVaerdierForBMIOver16() {
+                this.beregnSamlet(this.abw);
+            }
+
+            beregnSamlet($vaegt) {
+                this.stabilfase_protein = Math.round(1.3 * $vaegt);
+                this.stabilfase_energibehov_min = 105 * $vaegt;
+                this.stabilfase_energibehov_max = 126 * $vaegt;
+                if ("Dialyse".localeCompare(this.dialyseinsufficient) == 0) {
+                    this.stabilfase_protein += 17.5;
+                } else if ("Nyreinsufficient".localeCompare(this.dialyseinsufficient) == 0) {
+                    this.stabilfase_protein = Math.round(.8 * $vaegt);
+                    this.stabilfase_energibehov_min = Math.round(105 * $vaegt);
+                    this.stabilfase_energibehov_max = Math.round(147 * $vaegt);
+                } else if ("Leverinsufficient".localeCompare(this.dialyseinsufficient) == 0) {
+                    this.stabilfase_energibehov_min = 84 * $vaegt;
+                    this.stabilfase_energibehov_max = 126 * $vaegt;
+                }
+
+                this.vaeske = Math.round(this.stabilfase_protein / this.maengde_protein * 100);
+
+                this.vaeske_kj = Math.round(this.vaeske * this.maengde_kj / 100);
+            }
+
+            saetVaerdierForBMIUnder17() {
+                this.dag1_energibehov = this.abw * UNDER_BMI_17_DAG1;
+                this.dag1_vaeske = Math.round(this.dag1_energibehov * 100 / this.maengde_kj);
+                this.dag1_vaeske_protein = Math.round(this.dag1_vaeske * this.maengde_protein / 100);
+                this.dag3_energibehov = this.abw * UNDER_BMI_17_DAG3;
+                this.dag3_vaeske = Math.round(this.dag3_energibehov * 100 / this.maengde_kj, 0);
+                this.dag3_vaeske_protein = Math.round(this.dag3_vaeske * this.maengde_protein / 100);
+                this.dag5_energibehov = this.abw * UNDER_BMI_17_DAG5;
+                this.dag5_vaeske = Math.round(this.dag5_energibehov * 100 / this.maengde_kj, 0);
+                this.dag5_vaeske_protein = Math.round(this.dag5_vaeske * this.maengde_protein / 100);
+                this.dag7_energibehov = this.abw * UNDER_BMI_17_DAG7;
+                this.dag7_vaeske = Math.round(this.dag7_energibehov * 100 / this.maengde_kj, 0);
+                this.dag7_vaeske_protein = Math.round(this.dag7_vaeske * this.maengde_protein / 100);
+            }
+
+            hentTidligfaseProtein() {
+                return Math.round(this.stabilfase_protein * 0.7, 0);
+            }
+
+            hentTidligfaseEnergibehovMin() {
+                return Math.round(this.stabilfase_energibehov_min * 0.7, 0);
+            }
+
+            hentTidligfaseEnergibehovMax() {
+                return Math.round(this.stabilfase_energibehov_max * 0.7, 0);
+            }
+
+            hentTidligfaseVaeske() {
+                return Math.round(this.vaeske * 0.7, 0);
+            }
+
+            hentTidligfaseVaeskeKj() {
+                return Math.round(this.vaeske_kj * 0.7, 0);
+            }
+
+            /* Hvis tidligfase_vaeske_kj STØRRE END tidligefase_energibehov_max ELLER
+                tidligfase_vaeske_kj MINDRE END tidligfase_energibehov_min SÅ Skriv TEXT 
+            */
+            hvisTidligfaseEnergiOverskrid() {
+                if (this.hentTidligfaseVaeskeKj() > this.hentTidligfaseEnergibehovMax() || this.hentTidligfaseVaeskeKj() < this.hentTidligfaseEnergibehovMin()) {
+                    return true;
+                }
+                return false;
+            }
+
+            /* Hvis stabilfase_vaeske_kj STØRRE END stabilfase_energibehov_max ELLER
+                stabilfase_vaeske_kj MINDRE END stabilfase_energibehov_min SÅ Skriv TEXT
+            */
+            hvisStabilfaseEnergiOverskrid() {
+                if (this.vaeske_kj > this.stabilfase_energibehov_max || this.vaeske_kj < this.stabilfase_energibehov_min) {
+                    return true;
+                }
+                return false;
+            }
+            round50(n) {
+                // Smaller multiple 
+                a = (int)(n / 50) * 50;
+
+                // Larger multiple 
+                b = (a + 50);
+
+                // Return of closest of two 
+                return (n - a > b - n) ? b : a;
+            }
+        }
+
+
+        function beregn() {
+
+            // tjek input-felter
+            if (document.getElementById("navn").value.length < 1) {
+                document.getElementById("navnerror").style.visibility = "visible";
+            }
+            else if (document.getElementById("hoejde").value.length < 1) {
+                document.getElementById("navnerror").style.visibility = "hidden";
+                document.getElementById("hoejdeerror").style.visibility = "visible";
+            }
+            else if (document.getElementById("vaegt").value.length < 1) {
+                document.getElementById("navnerror").style.visibility = "hidden";
+                document.getElementById("hoejdeerror").style.visibility = "hidden";
+                document.getElementById("vaegterror").style.visibility = "visible";
+            }
+            else if (document.getElementById("date").value.length < 1) {
+                document.getElementById("navnerror").style.visibility = "hidden";
+                document.getElementById("hoejdeerror").style.visibility = "hidden";
+                document.getElementById("vaegterror").style.visibility = "hidden";
+                document.getElementById("dateerror").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("navnerror").style.visibility = "hidden";
+                document.getElementById("hoejdeerror").style.visibility = "hidden";
+                document.getElementById("vaegterror").style.visibility = "hidden";
+                document.getElementById("dateerror").style.visibility = "hidden";
+
+                b = new Beregner();
+                b.navn = document.getElementById("navn").value;
+                b.hoejde = document.getElementById("hoejde").value;
+                b.abw = document.getElementById("vaegt").value;
+                b.koen = document.querySelector('input[name="koen"]:checked').value;
+                b.indlaegdato = document.getElementById("date").value;;
+                b.beregndato = document.getElementById("dateberegn").value;;
+                b.dialyseinsufficient = document.querySelector('input[name="type"]:checked').value;
+                b.valgtvaeske = document.querySelector('input[name="vaeske_input"]:checked').value;
+                b.vaesketrestriktion = document.getElementById("restrik1").checked;
+                if ("Kvinde".localeCompare(b.koen) == 0) {
+                    document.getElementById("visFraTraekAfhaengigtAfKoen").innerHTML = "105";
+                }
+                else {
+                    document.getElementById("visFraTraekAfhaengigtAfKoen").innerHTML = "100";
+                }
+
+                b.beregnErnaering();
+                b.beregnVaeske();
+
+
+                // vis data og beregning i div elementerne- Start med under 17 bmi elementer
+                document.getElementById("vis_patientnavn").innerHTML = b.navn;
+                document.getElementById("vis_indlaegdato").innerHTML = b.indlaegdato;
+                document.getElementById("vis_koen").innerHTML = b.koen;
+                document.getElementById("vis_koen2").innerHTML = b.koen;
+                document.getElementById("vis_type").innerHTML = b.dialyseinsufficient;
+                document.getElementById("vis_abw").innerHTML = b.abw;
+                document.getElementById("vis_ernaeringsvaegt").innerHTML = b.ernaeringsvaegt;
+                document.getElementById("vis_bmi").innerHTML = b.bmi;
+                document.getElementById("vis_ibw").innerHTML = b.ibw;
+                document.getElementById("vis_hoejde").innerHTML = b.hoejde;
+                document.getElementById("vis_valgtpraeparat").innerHTML = b.valgtvaeskenavn;
+                document.getElementById("vis_dag1_energibehov").innerHTML = b.dag1_energibehov;
+                document.getElementById("vis_dag1_vaeske").innerHTML = b.dag1_vaeske;
+                document.getElementById("vis_dag1_vaeske_protein").innerHTML = b.dag1_vaeske_protein;
+                document.getElementById("vis_dag3_energibehov").innerHTML = b.dag3_energibehov;
+                document.getElementById("vis_dag3_vaeske").innerHTML = b.dag3_vaeske;
+                document.getElementById("vis_dag3_vaeske_protein").innerHTML = b.dag3_vaeske_protein;
+                document.getElementById("vis_dag5_energibehov").innerHTML = b.dag5_energibehov;
+                document.getElementById("vis_dag5_vaeske").innerHTML = b.dag5_vaeske;
+                document.getElementById("vis_dag5_vaeske_protein").innerHTML = b.dag5_vaeske_protein;
+                document.getElementById("vis_dag7_energibehov").innerHTML = b.dag7_energibehov;
+                document.getElementById("vis_dag7_vaeske").innerHTML = b.dag7_vaeske;
+                document.getElementById("vis_dag7_vaeske_protein").innerHTML = b.dag7_vaeske_protein;
+
+                //sæt tidlig og stabil fase
+                document.getElementById("tidligfase_protein").innerHTML = b.hentTidligfaseProtein();
+                document.getElementById("stabilfase_protein").innerHTML = b.stabilfase_protein;
+                document.getElementById("tidligfase_energibehov_min").innerHTML = b.hentTidligfaseEnergibehovMin();
+                document.getElementById("tidligfase_energibehov_max").innerHTML = b.hentTidligfaseEnergibehovMax();
+                document.getElementById("stabilfase_energibehov_min").innerHTML = b.stabilfase_energibehov_min;
+                document.getElementById("stabilfase_energibehov_max").innerHTML = b.stabilfase_energibehov_max;
+
+                document.getElementById("tidligfase_vaeske").innerHTML = b.hentTidligfaseVaeske();
+                document.getElementById("tidligfase_vaeske_kj").innerHTML = b.hentTidligfaseVaeskeKj();
+
+                document.getElementById("stabilfase_vaeske").innerHTML = b.vaeske;
+                document.getElementById("stabilfase_vaeske_kj").innerHTML = b.vaeske_kj;
+
+                if (b.hvisTidligfaseEnergiOverskrid()) {
+                    document.getElementById("tidligfaseOveskridVaerdiText").innerHTML = b.overskridtekst;
+                }
+                if (b.hvisStabilfaseEnergiOverskrid()) {
+                    document.getElementById("stabilfaseOveskridVaerdiText").innerHTML = b.overskridtekst;
+
+                }
+
+                if (b.vaesketrestriktion) {
+                    str = "Væskerestriktion -> Lægeordination";
+                } else {
+                    str = b.dagligtvaeskebehov + " ml pr. døgn";
+                }
+                document.getElementById("vis_vaeskebehov").innerHTML = str;
+
+                document.getElementById("patientinfo").style.display = "block";
+                document.getElementById("vaeskebehov").style.display = "block";
+                if (b.bmi < 17) {
+                    document.getElementById("indtastning").style.display = "none";
+                    document.getElementById("resultatBMIUnder17").style.display = "block";
+                }
+                else {
+                    document.getElementById("indtastning").style.display = "none";
+                    document.getElementById("resultatBMIOver16").style.display = "block";
+                }
+
+                // sæt værdi i resultatpane
+            }
+        }
+
+        function retIndtast() {
+            document.getElementById("patientinfo").style.display = "none";
+            document.getElementById("resultatBMIUnder17").style.display = "none";
+            document.getElementById("resultatBMIOver16").style.display = "none";
+            document.getElementById("vaeskebehov").style.display = "none";
+            document.getElementById("indtastning").style.display = "block";
+        }
+
+        function nyIndtast() {
+            document.getElementById("navn").value
+        }
+
     </script>
-    </body>
-    
-    </html>    
+</body>
+
+</html>
